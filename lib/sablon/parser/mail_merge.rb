@@ -3,6 +3,7 @@ module Sablon
     class MailMerge
       class MergeField
         KEY_PATTERN = /^\s*MERGEFIELD\s+([^ ]+)\s+\\\*\s+MERGEFORMAT\s*$/
+
         def expression
           $1 if @raw_expression =~ KEY_PATTERN
         end
@@ -11,7 +12,8 @@ module Sablon
         def replace_field_display(node, content)
           paragraph = node.ancestors(".//w:p").first
           display_node = node.search(".//w:t").first
-          content.append_to(paragraph, display_node)
+
+          content.append_to(paragraph, display_node) if content.present?
           display_node.remove
         end
       end
