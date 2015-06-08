@@ -70,7 +70,14 @@ module Sablon
       def self.wraps?(value) false end
 
       def append_to(paragraph, display_node)
+        p '----inside word_ml-----'
+        p xml
+        p '---------'
+
         Nokogiri::XML.fragment(xml).children.reverse.each do |child|
+          p '--------inside loop-'
+          p child
+          p '-----'
           paragraph.add_next_sibling child
         end
         paragraph.remove
@@ -83,7 +90,7 @@ module Sablon
       def self.wraps?(value) false end
 
       def initialize(markdown)
-        redcarpet = ::Redcarpet::Markdown.new(Sablon::Redcarpet::Render::WordML)
+        redcarpet = ::Redcarpet::Markdown.new(Sablon::Redcarpet::Render::WordML, autolink: true, tables: true)
         word_ml = Sablon.content(:word_ml, redcarpet.render(markdown))
         super word_ml
       end
