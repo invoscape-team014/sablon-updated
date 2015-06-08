@@ -12,7 +12,15 @@ module Sablon
         def replace_field_display(node, content)
           paragraph = node.ancestors(".//w:p").first
           display_node = node.search(".//w:t").first
-
+          p '--------'
+          p'------inside replace_field_display'
+          p content
+          p'-----dn-'
+          p display_node
+          p'-----p-'
+          p paragraph.to_xml
+          p'------'
+          p paragraph
           content.append_to(paragraph, display_node) if content.present?
           display_node.remove
         end

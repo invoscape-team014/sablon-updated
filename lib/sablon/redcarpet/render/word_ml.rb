@@ -39,6 +39,11 @@ XML
         end
 
         def list(content, list_type)
+          p '-----list-'
+          p list_type
+          p '---content-'
+          p content
+
           content
         end
 
