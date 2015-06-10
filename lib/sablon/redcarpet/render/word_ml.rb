@@ -11,6 +11,32 @@ module Sablon
 </w:p>
 XML
 
+        LIST_PATTERN = <<-XML.gsub("\n", "")
+<w:p w:rsidR="00F85B4B" w:rsidRDefault="00F85B4B" w:rsidP="00F85B4B">
+<w:pPr><w:pStyle w:val="BodyText"/>
+<w:numPr><w:ilvl w:val="0"/>
+<w:numId w:val="2"/></w:numPr>
+<w:spacing w:before="104" w:line="240" w:lineRule="exact"/>
+<w:ind w:right="113"/>
+<w:jc w:val="both"/>
+<w:rPr>
+<w:color w:val="231F20"/>
+<w:spacing w:val="4"/>
+</w:rPr>
+</w:pPr>
+<w:r>
+<w:rPr>
+<w:color w:val="231F20"/>
+<w:spacing w:val="4"/>
+</w:rPr>
+<w:t>
+%s
+</w:t>
+</w:r>
+</w:p>
+XML
+
+
         def linebreak
           "<w:r><w:br/></w:r>"
         end
@@ -39,12 +65,13 @@ XML
         end
 
         def list(content, list_type)
-          p '-----list-'
-          p list_type
-          p '---content-'
-          p content
+          # p '-----list-'
+          # p list_type
+          # p '---content-'
+          # p content
 
-          content
+          # content
+          LIST_PATTERN % [content]
         end
 
         LIST_STYLE_MAPPING = {
